@@ -37,20 +37,20 @@ jlong Java_dev_blackilykat_jpasimple_PASimple_c_1pa_1simple_1new(JNIEnv *env, jc
 
 	pa_sample_spec ss;
 	switch(formatIndex) {
-		case 1: ss.format = PA_SAMPLE_U8; break;
-		case 2: ss.format = PA_SAMPLE_ALAW; break;
-		case 3: ss.format = PA_SAMPLE_ULAW; break;
-		case 4: ss.format = PA_SAMPLE_S16LE; break;
-		case 5: ss.format = PA_SAMPLE_S16BE; break;
-		case 6: ss.format = PA_SAMPLE_FLOAT32LE; break;
-		case 7: ss.format = PA_SAMPLE_FLOAT32BE; break;
-		case 8: ss.format = PA_SAMPLE_S32LE; break;
-		case 9: ss.format = PA_SAMPLE_S32BE; break;
-		case 10: ss.format = PA_SAMPLE_S24LE; break;
-		case 11: ss.format = PA_SAMPLE_S24BE; break;
-		case 12: ss.format = PA_SAMPLE_S24_32LE; break;
-		case 13: ss.format = PA_SAMPLE_S24_32BE; break;
-		case 14: ss.format = PA_SAMPLE_MAX; break;
+		case 0: ss.format = PA_SAMPLE_U8; break;
+		case 1: ss.format = PA_SAMPLE_ALAW; break;
+		case 2: ss.format = PA_SAMPLE_ULAW; break;
+		case 3: ss.format = PA_SAMPLE_S16LE; break;
+		case 4: ss.format = PA_SAMPLE_S16BE; break;
+		case 5: ss.format = PA_SAMPLE_FLOAT32LE; break;
+		case 6: ss.format = PA_SAMPLE_FLOAT32BE; break;
+		case 7: ss.format = PA_SAMPLE_S32LE; break;
+		case 8: ss.format = PA_SAMPLE_S32BE; break;
+		case 9: ss.format = PA_SAMPLE_S24LE; break;
+		case 10: ss.format = PA_SAMPLE_S24BE; break;
+		case 11: ss.format = PA_SAMPLE_S24_32LE; break;
+		case 12: ss.format = PA_SAMPLE_S24_32BE; break;
+		case 13: ss.format = PA_SAMPLE_MAX; break;
 		case -1: ss.format = PA_SAMPLE_INVALID; break;
 		default:
 			jclass exceptionClass = (*env)->FindClass(env, "java/lang/IllegalArgumentException");
