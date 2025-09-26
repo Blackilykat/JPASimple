@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+}
+
+group = 'dev.blackilykat'
+version = '1.0'
+
+jar {
+    from {
+        'c/target/java-pulse-simple.so'
+    }
+}
