@@ -4,6 +4,34 @@ JNI bindings for the pa-simple library to play and record audio through PulseAud
 
 ## Usage
 
+### Importing
+
+This library is available in maven central.
+
+Gradle (groovy):
+```groovy
+dependencies {
+    // ...
+    implementation 'dev.blackilykat:JPASimple:1.0'
+    // ...
+}
+```
+
+Maven:
+```xml
+<dependencies>
+    <!-- ... -->
+    <dependency>
+        <groupId>dev.blackilykat</groupId>
+        <artifactId>JPASimple</artifactId>
+        <version>1.0</version>
+    </dependency>
+    <!-- ... -->
+</dependencies>
+```
+
+### Example
+
 Here's an example playing back a basic sine wave:
 ```java
 try(PASimple stream = new PASimple(

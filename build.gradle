@@ -1,12 +1,54 @@
 plugins {
     id 'java'
+    id 'com.vanniktech.maven.publish' version '0.34.0'
 }
 
 group = 'dev.blackilykat'
 version = '1.0'
 
+
 jar {
     from {
         'c/target/java-pulse-simple.so'
+    }
+}
+
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
+mavenPublishing {
+    publishToMavenCentral()
+    signAllPublications()
+}
+
+mavenPublishing {
+    coordinates(group, name, version)
+
+    pom {
+        group = 'dev.blackilykat'
+        name = 'JPASimple'
+        description = 'JNI bindings for the pa_simple library'
+        url = 'https://github.com/Blackilykat/JPASimple'
+        packaging = 'jar'
+
+        scm {
+            url = 'https://github.com/Blackilykat/JPASimple'
+            connection = 'scm:git://github.com:Blackilykat/JPASimple.git'
+            developerConnection = 'scm:git://github.com:Blackilykat/JPASimple.git'
+        }
+
+        licenses {
+            license {
+                name = "GNU Lesser General Public License Version 2.1"
+                url = "https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt"
+            }
+        }
+
+        developers {
+            developer {
+                id = 'Blackilykat'
+                name = 'Blackilykat'
+                email = 'contact@blackilykat.dev'
+            }
+        }
     }
 }
