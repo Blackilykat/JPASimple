@@ -2,6 +2,7 @@
 #include <pulse/sample.h>
 #include <pulse/simple.h>
 #include <jni.h>
+#include <stdlib.h>
 
 
 jlong Java_dev_blackilykat_jpasimple_PASimple_c_1pa_1simple_1new(JNIEnv *env, jclass clazz, jstring server, jstring name, jboolean isRecording, jstring device, jstring streamName, jobject spec, jobject bufferAttributes) {
@@ -96,11 +97,12 @@ jint Java_dev_blackilykat_jpasimple_PASimple_c_1pa_1simple_1write(JNIEnv *env, j
 		return (*env)->ThrowNew(env, exceptionClass, "Invalid combination of array length, offset and given size");
 	}
 
-	void *elements = (*env)->GetByteArrayElements(env, data, NULL);
+	jbyte *elements = malloc(bytes);
 
-	jlong ret = pa_simple_write((pa_simple*) c_pa_simple, elements + offset, bytes, NULL);
+	(*env)->GetByteArrayRegion(env, data, offset, bytes, elements);
+	jlong ret = pa_simple_write((pa_simple*) c_pa_simple, elements, bytes, NULL);
 
-	(*env)->ReleaseByteArrayElements(env, data, elements, 0);
+	free(elements);
 
 	return ret;
 }
@@ -116,11 +118,12 @@ jint Java_dev_blackilykat_jpasimple_PASimple_c_1pa_1simple_1read(JNIEnv *env, jc
 		return (*env)->ThrowNew(env, exceptionClass, "Invalid combination of array length, offset and given size");
 	}
 
-	char *elements = (*env)->GetByteArrayElements(env, data, NULL);
+	jbyte *elements = malloc(bytes);
 
-	int ret = pa_simple_read((pa_simple*) c_pa_simple, elements + offset, bytes, NULL);
+	int ret = pa_simple_read((pa_simple*) c_pa_simple, elements, bytes, NULL);
+	(*env)->SetByteArrayRegion(env, data, offset, bytes, elements);
 
-	(*env)->ReleaseByteArrayElements(env, data, elements, 0);
+	free(elements);
 
 	return ret;
 }
