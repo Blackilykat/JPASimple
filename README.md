@@ -13,7 +13,7 @@ try(PASimple stream = new PASimple(
         null,              // device name (null = default)
         "stream",          // stream name (e.g. song title)
         new SampleSpec(
-                SampleFormat.S16BE,     // format
+                SampleFormat.S16LE,     // format
                 44100,                  // sample rate
                 (short) 1               // channels
         ),
