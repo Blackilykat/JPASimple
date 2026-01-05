@@ -115,6 +115,7 @@ public class PASimple implements Closeable, AutoCloseable {
 			try(FileOutputStream os = new FileOutputStream(tempFile)) {
 				os.write(bytes);
 			}
+			tempFile.deleteOnExit();
 
 			System.load(tempFile.getAbsolutePath());
 		} catch(UnsatisfiedLinkError | IOException | NullPointerException e) {
